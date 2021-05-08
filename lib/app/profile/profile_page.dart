@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 
 import 'components/container_divider_widget.dart';
+import 'components/custom_grid_widget.dart';
 import 'components/notifications_widget.dart';
 import 'components/profile_info_widget.dart';
-import 'components/profile_persistent_header.dart';
-import 'components/tabs_widget.dart';
+import 'components/persistent_profile_header.dart';
+import 'components/persistent_tabs_widget.dart';
 
 const double leftPadding = 20.0;
 const double initialScrollOffset = 250.0;
@@ -37,18 +38,22 @@ class _ProfilePageState extends State<ProfilePage>
     );
   }
 
+  bool get scrollStopped =>
+      !scrollController.position.isScrollingNotifier.value;
+
+  bool get mustExpand =>
+      scrollController.offset < initialScrollOffset * scrollDesiredPercent;
+
+  bool get mustRetract =>
+      !mustExpand && scrollController.offset < initialScrollOffset;
+
   void _handleScrollingActivity() {
-    if (!scrollController.position.isScrollingNotifier.value) {
-      if (scrollController.offset >
-              initialScrollOffset * scrollDesiredPercent &&
-          scrollController.offset < initialScrollOffset) {
+    if (scrollStopped) {
+      if (mustRetract) {
         animateToNormalExtent();
-      } else if (scrollController.offset <
-          initialScrollOffset * scrollDesiredPercent) {
+      } else if (mustExpand) {
         animateToMaxExtent();
       }
-    } else {
-      print('scroll is started');
     }
   }
 
@@ -68,7 +73,7 @@ class _ProfilePageState extends State<ProfilePage>
         controller: scrollController,
         slivers: [
           SliverPersistentHeader(
-            delegate: ProfilePersistentHeader(),
+            delegate: PersistentProfileHeader(),
             pinned: true,
           ),
           SliverToBoxAdapter(
@@ -85,11 +90,12 @@ class _ProfilePageState extends State<ProfilePage>
                   ),
                   NotificationsWidget(),
                   ContainerDividerWidget(),
-                  TabsWidget(),
                 ],
               ),
             ),
           ),
+          PersistentTabsWidget(),
+          CustomGridWidget(),
         ],
       ),
     );

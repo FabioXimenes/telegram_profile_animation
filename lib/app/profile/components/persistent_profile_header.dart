@@ -19,7 +19,7 @@ const double maxTopOffset = 50;
 const double minFontSize = 16;
 const double maxFontSize = 18;
 
-class ProfilePersistentHeader extends SliverPersistentHeaderDelegate {
+class PersistentProfileHeader extends SliverPersistentHeaderDelegate {
   @override
   Widget build(
       BuildContext context, double shrinkOffset, bool overlapsContent) {
