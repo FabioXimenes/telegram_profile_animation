@@ -16,18 +16,12 @@ class _ProfilePageState extends State<ProfilePage>
   ScrollController scrollController =
       ScrollController(initialScrollOffset: initialScrollOffset);
 
-  bool isIncreasing = false;
-  bool isExpanded = false;
-
   void animateToMaxExtent() {
     scrollController.animateTo(
-      0,
+      50,
       duration: _duration,
       curve: Curves.linear,
     );
-    setState(() {
-      isExpanded = false;
-    });
   }
 
   void animateToNormalExtent() {
@@ -36,9 +30,6 @@ class _ProfilePageState extends State<ProfilePage>
       duration: _duration,
       curve: Curves.linear,
     );
-    setState(() {
-      isExpanded = true;
-    });
   }
 
   void _handleScrollingActivity() {
@@ -72,7 +63,7 @@ class _ProfilePageState extends State<ProfilePage>
         controller: scrollController,
         slivers: [
           SliverPersistentHeader(
-            delegate: ProfileHeader(isExpanded: isExpanded),
+            delegate: ProfileHeader(),
             pinned: true,
           ),
           SliverToBoxAdapter(
@@ -110,14 +101,10 @@ const double maxleftOffset = 80;
 const double minTopOffset = 8;
 const double maxTopOffset = 50;
 
-const double minFontSize = 18;
+const double minFontSize = 16;
 const double maxFontSize = 18;
 
 class ProfileHeader extends SliverPersistentHeaderDelegate {
-  final bool isExpanded;
-
-  ProfileHeader({this.isExpanded});
-
   @override
   Widget build(
       BuildContext context, double shrinkOffset, bool overlapsContent) {
