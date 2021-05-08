@@ -77,28 +77,31 @@ class PersistentProfileHeader extends SliverPersistentHeaderDelegate {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 AnimatedDefaultTextStyle(
-                    child: Text(
-                      'Fábio Ximenes',
-                    ),
-                    style: TextStyle(
-                      fontSize: shrinkOffset <
-                              initialScrollOffset * (scrollDesiredPercent - 0.2)
-                          ? 24
-                          : fontSize,
-                      fontWeight: FontWeight.w600,
-                    ),
-                    duration: Duration(
-                      milliseconds: 200,
-                    )),
-                SizedBox(height: 5),
-                Text(
-                  'Last seen recently',
+                  child: Text(
+                    'Fábio Ximenes',
+                  ),
                   style: TextStyle(
-                    color: Colors.grey,
-                    fontWeight: FontWeight.bold,
+                    fontSize: mustExpand ? 24 : fontSize,
+                    fontWeight: FontWeight.w600,
+                  ),
+                  duration: Duration(
+                    milliseconds: 200,
+                  ),
+                ),
+                SizedBox(height: 5),
+                AnimatedDefaultTextStyle(
+                  child: Text(
+                    'Last seen recently',
+                  ),
+                  style: TextStyle(
+                    color: mustExpand ? Colors.white : Colors.grey,
+                    fontWeight: FontWeight.w600,
                   ),
                   overflow: TextOverflow.ellipsis,
-                )
+                  duration: Duration(
+                    milliseconds: 200,
+                  ),
+                ),
               ],
             ),
           ),
