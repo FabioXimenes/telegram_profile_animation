@@ -1,16 +1,14 @@
-# telegram_profile_animation
+# Telegram Profile Animation
 
-A new Flutter project.
+![Alt Text](https://github.com/FabioXimenes/telegram_profile_animation/blob/main/telegram_profile_animation.gif)
 
-## Getting Started
+Watch in high resolution on [YouTube](https://youtu.be/vWOtscftyZw).
 
-This project is a starting point for a Flutter application.
+## Get Started
 
-A few resources to get you started if this is your first Flutter project:
+To build and run this project:
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+1. Get [Flutter](https://flutter.dev/) here if you don't already have it
+2. Clone this repository.
+3. cd into the repo folder.
+4. run flutter run to build the app.
