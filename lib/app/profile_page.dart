@@ -203,7 +203,7 @@ class ProfileHeader extends SliverPersistentHeaderDelegate {
                     )),
                 SizedBox(height: 5),
                 Text(
-                  'Last seen at 15:49',
+                  'Last seen recently',
                   style: TextStyle(
                     color: Colors.grey,
                     fontWeight: FontWeight.bold,
@@ -302,10 +302,23 @@ class ContainerDividerWidget extends StatelessWidget {
   }
 }
 
-class NotificationsWidget extends StatelessWidget {
+class NotificationsWidget extends StatefulWidget {
   const NotificationsWidget({
     Key key,
   }) : super(key: key);
+
+  @override
+  _NotificationsWidgetState createState() => _NotificationsWidgetState();
+}
+
+class _NotificationsWidgetState extends State<NotificationsWidget> {
+  bool isOn = false;
+
+  void setNotificationsState(bool value) {
+    setState(() {
+      isOn = value;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -324,14 +337,14 @@ class NotificationsWidget extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Notificações',
+                  'Notifications',
                   style: TextStyle(
                     fontSize: 16,
                   ),
                 ),
                 SizedBox(height: 5),
                 Text(
-                  'Ativadas',
+                  isOn ? 'On' : 'Off',
                   style: TextStyle(
                     color: Colors.grey,
                   ),
@@ -339,8 +352,8 @@ class NotificationsWidget extends StatelessWidget {
               ],
             ),
             Switch(
-              value: true,
-              onChanged: (isActive) {},
+              value: isOn,
+              onChanged: setNotificationsState,
               activeColor: Colors.lightBlue,
             ),
           ],
@@ -392,7 +405,7 @@ class InfoWidget extends StatelessWidget {
                     ),
                     SizedBox(height: 5),
                     Text(
-                      'Celular',
+                      'Mobile',
                       style: TextStyle(
                         color: Colors.grey,
                       ),
